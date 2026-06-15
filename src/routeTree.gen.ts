@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as FosterRouteImport } from './routes/foster'
 import { Route as ChatRouteImport } from './routes/chat'
+import { Route as CatsRouteImport } from './routes/cats'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -27,6 +28,11 @@ const FosterRoute = FosterRouteImport.update({
 const ChatRoute = ChatRouteImport.update({
   id: '/chat',
   path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatsRoute = CatsRouteImport.update({
+  id: '/cats',
+  path: '/cats',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -50,9 +56,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const CatsIndexRoute = CatsIndexRouteImport.update({
-  id: '/cats/',
-  path: '/cats/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => CatsRoute,
 } as any)
 const CatsCatIdRoute = CatsCatIdRouteImport.update({
   id: '/$catId',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/cats': typeof CatsRouteWithChildren
   '/chat': typeof ChatRoute
   '/foster': typeof FosterRoute
   '/api/chat': typeof ApiChatRoute
@@ -93,6 +100,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/apply': typeof ApplyRoute
   '/auth': typeof AuthRoute
+  '/cats': typeof CatsRouteWithChildren
   '/chat': typeof ChatRoute
   '/foster': typeof FosterRoute
   '/api/chat': typeof ApiChatRoute
@@ -106,6 +114,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/apply'
     | '/auth'
+    | '/cats'
     | '/chat'
     | '/foster'
     | '/api/chat'
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/apply'
     | '/auth'
+    | '/cats'
     | '/chat'
     | '/foster'
     | '/api/chat'
@@ -140,10 +150,10 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ApplyRoute: typeof ApplyRoute
   AuthRoute: typeof AuthRoute
+  CatsRoute: typeof CatsRouteWithChildren
   ChatRoute: typeof ChatRoute
   FosterRoute: typeof FosterRoute
   ApiChatRoute: typeof ApiChatRoute
-  CatsIndexRoute: typeof CatsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -160,6 +170,13 @@ declare module '@tanstack/react-router' {
       path: '/chat'
       fullPath: '/chat'
       preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cats': {
+      id: '/cats'
+      path: '/cats'
+      fullPath: '/cats'
+      preLoaderRoute: typeof CatsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -192,10 +209,10 @@ declare module '@tanstack/react-router' {
     }
     '/cats/': {
       id: '/cats/'
-      path: '/cats'
+      path: '/'
       fullPath: '/cats/'
       preLoaderRoute: typeof CatsIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof CatsRoute
     }
     '/cats/$catId': {
       id: '/cats/$catId'
@@ -214,26 +231,28 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface CatsRouteChildren {
+  CatsCatIdRoute: typeof CatsCatIdRoute
+  CatsIndexRoute: typeof CatsIndexRoute
+}
+
+const CatsRouteChildren: CatsRouteChildren = {
+  CatsCatIdRoute: CatsCatIdRoute,
+  CatsIndexRoute: CatsIndexRoute,
+}
+
+const CatsRouteWithChildren = CatsRoute._addFileChildren(CatsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   ApplyRoute: ApplyRoute,
   AuthRoute: AuthRoute,
+  CatsRoute: CatsRouteWithChildren,
   ChatRoute: ChatRoute,
   FosterRoute: FosterRoute,
   ApiChatRoute: ApiChatRoute,
-  CatsIndexRoute: CatsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
