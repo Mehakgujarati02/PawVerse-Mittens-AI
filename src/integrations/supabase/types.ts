@@ -14,16 +14,188 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      adoption_applications: {
+        Row: {
+          address: string | null
+          ai_score: number | null
+          ai_summary: string | null
+          applicant_name: string
+          application_type: string
+          cat_id: string | null
+          created_at: string
+          email: string
+          experience: string | null
+          has_kids: boolean | null
+          has_other_pets: boolean | null
+          home_type: string | null
+          id: string
+          phone: string | null
+          status: string
+          user_id: string
+          why_adopt: string | null
+        }
+        Insert: {
+          address?: string | null
+          ai_score?: number | null
+          ai_summary?: string | null
+          applicant_name: string
+          application_type?: string
+          cat_id?: string | null
+          created_at?: string
+          email: string
+          experience?: string | null
+          has_kids?: boolean | null
+          has_other_pets?: boolean | null
+          home_type?: string | null
+          id?: string
+          phone?: string | null
+          status?: string
+          user_id: string
+          why_adopt?: string | null
+        }
+        Update: {
+          address?: string | null
+          ai_score?: number | null
+          ai_summary?: string | null
+          applicant_name?: string
+          application_type?: string
+          cat_id?: string | null
+          created_at?: string
+          email?: string
+          experience?: string | null
+          has_kids?: boolean | null
+          has_other_pets?: boolean | null
+          home_type?: string | null
+          id?: string
+          phone?: string | null
+          status?: string
+          user_id?: string
+          why_adopt?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "adoption_applications_cat_id_fkey"
+            columns: ["cat_id"]
+            isOneToOne: false
+            referencedRelation: "cats"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cats: {
+        Row: {
+          age_years: number
+          breed: string | null
+          color: string | null
+          created_at: string
+          description: string | null
+          energy_level: string | null
+          gender: string
+          good_with_kids: boolean | null
+          good_with_pets: boolean | null
+          id: string
+          image_url: string | null
+          intake_notes: string | null
+          location: string | null
+          name: string
+          personality: string[] | null
+          status: string
+        }
+        Insert: {
+          age_years: number
+          breed?: string | null
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          energy_level?: string | null
+          gender: string
+          good_with_kids?: boolean | null
+          good_with_pets?: boolean | null
+          id?: string
+          image_url?: string | null
+          intake_notes?: string | null
+          location?: string | null
+          name: string
+          personality?: string[] | null
+          status?: string
+        }
+        Update: {
+          age_years?: number
+          breed?: string | null
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          energy_level?: string | null
+          gender?: string
+          good_with_kids?: boolean | null
+          good_with_pets?: boolean | null
+          id?: string
+          image_url?: string | null
+          intake_notes?: string | null
+          location?: string | null
+          name?: string
+          personality?: string[] | null
+          status?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "staff" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +322,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "staff", "user"],
+    },
   },
 } as const
