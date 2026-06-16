@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { lovable } from "@/integrations/lovable";
 
 export const Route = createFileRoute("/auth")({
-  head: () => ({ meta: [{ title: "Sign in — MyMeow" }, { name: "description", content: "Sign in or create a MyMeow account to adopt or foster a cat." }] }),
+  head: () => ({ meta: [{ title: "Sign in — PawVerse" }, { name: "description", content: "Sign in or create a PawVerse account to adopt or foster a cat or dog." }] }),
   component: Auth,
 });
 
