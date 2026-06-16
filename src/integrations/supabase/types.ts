@@ -99,6 +99,7 @@ export type Database = {
           location: string | null
           name: string
           personality: string[] | null
+          species: string
           status: string
         }
         Insert: {
@@ -117,6 +118,7 @@ export type Database = {
           location?: string | null
           name: string
           personality?: string[] | null
+          species?: string
           status?: string
         }
         Update: {
@@ -135,6 +137,7 @@ export type Database = {
           location?: string | null
           name?: string
           personality?: string[] | null
+          species?: string
           status?: string
         }
         Relationships: []
