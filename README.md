@@ -32,39 +32,9 @@ AI Assistant Integration,
 ❤️ Impact
 
 
-High-Level Architecture:-
+Architecture:-
 
 PawVerse-Mittens AI follows a three-tier architecture consisting of a React and TypeScript frontend, Supabase backend services with PostgreSQL and Row-Level Security, and an AI service layer powered by Gemini. The system supports role-based access control for adopters, staff, and administrators. Users can browse pet profiles, submit adoption or foster applications, and interact with a context-aware AI assistant called Mittens, which uses pet-specific information to provide personalized guidance. The architecture is modular, scalable, and designed to improve transparency and efficiency in the pet adoption process.
-
-
-┌──────────────────────────────┐
-│         End Users            │
-│ Adopters • Fosters • Staff   │
-
-└──────────────┬───────────────┘
-               │
-               ▼
-┌──────────────────────────────┐
-│ React + TypeScript Frontend  │
-│ TanStack Router              │
-│ Tailwind CSS                 │
-│ ShadCN/Radix UI              │
-
-└──────────────┬───────────────┘
-               │
-     ┌─────────┴─────────┐
-     ▼                   ▼
-     
-Supabase            AI Service
-(PostgreSQL)        (Gemini via
-                    AI Gateway)
-     │                   │
-     ▼                   ▼
-     
-Authentication      Mittens AI
-User Profiles       Adoption Assistant
-Applications
-Pet Database
 
 
 🐾 PawVerse-Mittens AI – Key Features
