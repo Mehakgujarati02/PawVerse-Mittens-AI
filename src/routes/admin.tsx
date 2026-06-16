@@ -148,7 +148,7 @@ function ApplicationsList({ apps, cats, onUpdate }: { apps: App[]; cats: { id: s
 }
 
 function IntakeForm({ onCreated }: { onCreated: () => void }) {
-  const [form, setForm] = useState({ name: "", age_years: 1, gender: "Female", breed: "", color: "", notes: "", image_url: "", location: "" });
+  const [form, setForm] = useState({ name: "", species: "cat" as "cat" | "dog", age_years: 1, gender: "Female", breed: "", color: "", notes: "", image_url: "", location: "" });
   const [ai, setAi] = useState<{ description: string; personality: string[]; energy_level: string; good_with_kids: boolean; good_with_pets: boolean } | null>(null);
   const [busy, setBusy] = useState(false);
   const run = useServerFn(generateIntakeDoc);
@@ -156,7 +156,7 @@ function IntakeForm({ onCreated }: { onCreated: () => void }) {
   async function aiGenerate() {
     setBusy(true);
     try {
-      const out = await run({ data: { name: form.name, age_years: Number(form.age_years), gender: form.gender, breed: form.breed, color: form.color, notes: form.notes } });
+      const out = await run({ data: { name: form.name, species: form.species, age_years: Number(form.age_years), gender: form.gender, breed: form.breed, color: form.color, notes: form.notes } });
       setAi(out);
     } catch (e) { toast.error("AI generation failed"); console.error(e); } finally { setBusy(false); }
   }
@@ -165,6 +165,7 @@ function IntakeForm({ onCreated }: { onCreated: () => void }) {
     if (!ai) return;
     const { error } = await supabase.from("cats").insert({
       name: form.name,
+      species: form.species,
       age_years: Number(form.age_years),
       gender: form.gender,
       breed: form.breed || null,
@@ -179,7 +180,7 @@ function IntakeForm({ onCreated }: { onCreated: () => void }) {
       good_with_pets: ai.good_with_pets,
     });
     if (error) { toast.error(error.message); return; }
-    setForm({ name: "", age_years: 1, gender: "Female", breed: "", color: "", notes: "", image_url: "", location: "" });
+    setForm({ name: "", species: "cat", age_years: 1, gender: "Female", breed: "", color: "", notes: "", image_url: "", location: "" });
     setAi(null);
     onCreated();
   }
