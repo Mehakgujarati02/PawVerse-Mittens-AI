@@ -191,6 +191,11 @@ function IntakeForm({ onCreated }: { onCreated: () => void }) {
         <Sparkles className="h-4 w-4" /> Intake — AI writes the listing for you
       </div>
       <div className="grid gap-4 md:grid-cols-2">
+        <div><Label>Species</Label>
+          <select className="mt-1.5 w-full rounded-md border bg-card px-3 py-2 text-sm" value={form.species} onChange={(e) => setForm({ ...form, species: e.target.value as "cat" | "dog" })}>
+            <option value="cat">🐱 Cat</option><option value="dog">🐶 Dog</option>
+          </select>
+        </div>
         <div><Label>Name</Label><Input className="mt-1.5" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
         <div><Label>Age (years)</Label><Input className="mt-1.5" type="number" step="0.5" value={form.age_years} onChange={(e) => setForm({ ...form, age_years: Number(e.target.value) })} /></div>
         <div><Label>Gender</Label>
