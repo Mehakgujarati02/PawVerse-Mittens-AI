@@ -62,10 +62,10 @@ function ChatPage() {
   }
 
   const suggestions = [
-    "I live in an apartment with one toddler. What cats fit us?",
+    "I live in an apartment with one toddler. What pet fits us?",
+    "Should I get a cat or a dog as a first-time owner?",
     "What does fostering actually cost me?",
-    "How do I introduce a new cat to my resident dog?",
-    "Help me decide between adopting and fostering first.",
+    "How do I introduce a new pet to my resident dog or cat?",
   ];
 
   return (
