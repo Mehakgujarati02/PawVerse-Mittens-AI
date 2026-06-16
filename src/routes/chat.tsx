@@ -117,10 +117,10 @@ function ChatPage() {
         </div>
 
         <form onSubmit={onSend} className="mt-4 flex gap-2">
-          <Input autoFocus value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask about a cat, fostering, costs, kids…" className="rounded-full bg-card" disabled={isLoading} />
+          <Input autoFocus value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask about a pet, fostering, costs, kids…" className="rounded-full bg-card" disabled={isLoading} />
           <Button type="submit" disabled={isLoading || !input.trim()} className="rounded-full bg-primary"><Send className="h-4 w-4" /></Button>
         </form>
-        <p className="mt-3 text-center text-xs text-muted-foreground">Want to apply? <Link to="/cats" className="text-primary hover:underline">Browse cats</Link></p>
+        <p className="mt-3 text-center text-xs text-muted-foreground">Want to apply? <Link to="/cats" className="text-primary hover:underline">Browse pets</Link></p>
       </main>
     </div>
   );
