@@ -8,6 +8,7 @@ const MatchInput = z.object({
   hasKids: z.boolean().optional(),
   hasOtherPets: z.boolean().optional(),
   energyPreference: z.string().optional(),
+  species: z.enum(["cat", "dog"]).optional(),
 });
 
 export const matchCats = createServerFn({ method: "POST" })
@@ -17,27 +18,30 @@ export const matchCats = createServerFn({ method: "POST" })
     if (!key) throw new Error("Missing LOVABLE_API_KEY");
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: cats, error } = await supabaseAdmin
+    let q = supabaseAdmin
       .from("cats")
-      .select("id,name,age_years,gender,breed,description,personality,good_with_kids,good_with_pets,energy_level")
+      .select("id,name,species,age_years,gender,breed,description,personality,good_with_kids,good_with_pets,energy_level")
       .eq("status", "available");
+    if (data.species) q = q.eq("species", data.species);
+    const { data: pets, error } = await q;
     if (error) throw new Error(error.message);
 
     const gateway = createLovableAiGatewayProvider(key);
     const model = gateway("google/gemini-3-flash-preview");
 
-    const prompt = `You are matching adopters to cats. Pick the top 3 cats from the list below that best fit the adopter, ranked best first.
+    const prompt = `You are matching adopters to pets (cats and dogs) on the PawVerse platform. Pick the top 3 pets from the list below that best fit the adopter, ranked best first.
 
 Adopter:
 - Lifestyle/home description: ${data.lifestyle}
 - Has kids: ${data.hasKids ?? "unknown"}
 - Has other pets: ${data.hasOtherPets ?? "unknown"}
 - Energy preference: ${data.energyPreference ?? "any"}
+- Species preference: ${data.species ?? "any (cat or dog)"}
 
-Available cats (JSON):
-${JSON.stringify(cats, null, 2)}
+Available pets (JSON, includes species field):
+${JSON.stringify(pets, null, 2)}
 
-Return your top 3 matches with a 1-sentence warm reason for each.`;
+Return your top 3 matches with a 1-sentence warm reason for each, mentioning whether it's a cat or dog.`;
 
     const { output } = await generateText({
       model,
