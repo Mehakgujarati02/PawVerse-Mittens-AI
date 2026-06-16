@@ -33,11 +33,14 @@ AI Assistant Integration,
 
 
 High-Level Architecture:-
+
 PawVerse-Mittens AI follows a three-tier architecture consisting of a React and TypeScript frontend, Supabase backend services with PostgreSQL and Row-Level Security, and an AI service layer powered by Gemini. The system supports role-based access control for adopters, staff, and administrators. Users can browse pet profiles, submit adoption or foster applications, and interact with a context-aware AI assistant called Mittens, which uses pet-specific information to provide personalized guidance. The architecture is modular, scalable, and designed to improve transparency and efficiency in the pet adoption process.
+
 
 ┌──────────────────────────────┐
 │         End Users            │
 │ Adopters • Fosters • Staff   │
+
 └──────────────┬───────────────┘
                │
                ▼
@@ -46,15 +49,18 @@ PawVerse-Mittens AI follows a three-tier architecture consisting of a React and 
 │ TanStack Router              │
 │ Tailwind CSS                 │
 │ ShadCN/Radix UI              │
+
 └──────────────┬───────────────┘
                │
      ┌─────────┴─────────┐
      ▼                   ▼
+     
 Supabase            AI Service
 (PostgreSQL)        (Gemini via
                     AI Gateway)
      │                   │
      ▼                   ▼
+     
 Authentication      Mittens AI
 User Profiles       Adoption Assistant
 Applications
@@ -62,6 +68,7 @@ Pet Database
 
 
 🐾 PawVerse-Mittens AI – Key Features
+
 1. Pet Discovery & Browsing
 
 Users can explore available pets through a centralized platform.
@@ -82,6 +89,7 @@ Energy level
 Health information
 Location
 Adoption status
+
 2. AI-Powered Adoption Assistant (Mittens AI)
 
 A built-in intelligent assistant that helps users throughout the adoption journey.
@@ -98,6 +106,7 @@ Example Queries
 "What documents are required?"
 "Is this dog suitable for apartment living?"
 "What should I prepare before fostering?"
+
 3. Adoption Application System
 
 Users can directly apply for adoption through the platform.
@@ -113,6 +122,7 @@ Benefits
 Eliminates paperwork
 Faster application process
 Centralized record management
+
 4. Foster Application Management
 
 Supports temporary foster care programs.
@@ -143,6 +153,7 @@ Full platform control
 User management
 Application management
 Pet management
+
 6. Secure Authentication System
 
 Built using Supabase Authentication.
@@ -157,6 +168,7 @@ Security Benefits
 Prevents unauthorized access
 Protects user data
 Enables personalized dashboards
+
 7. Pet Management System
 
 Allows administrators and shelters to manage animal listings.
@@ -212,6 +224,7 @@ React
 TypeScript
 Tailwind CSS
 Radix UI Components
+
 11. Centralized Animal Welfare Ecosystem
 
 Instead of using multiple disconnected channels:
