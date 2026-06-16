@@ -62,6 +62,7 @@ Return your top 3 matches with a 1-sentence warm reason for each, mentioning whe
 
 const IntakeInput = z.object({
   name: z.string().min(1).max(80),
+  species: z.enum(["cat", "dog"]).default("cat"),
   age_years: z.number().min(0).max(30),
   gender: z.string().min(1).max(20),
   breed: z.string().max(80).optional(),
@@ -80,7 +81,8 @@ export const generateIntakeDoc = createServerFn({ method: "POST" })
 
     const prompt = `Write an adoption listing for a shelter intake. Be warm, honest, specific, 80-120 words. Then extract structured tags.
 
-Cat:
+Pet:
+- Species: ${data.species}
 - Name: ${data.name}
 - Age (years): ${data.age_years}
 - Gender: ${data.gender}
