@@ -58,7 +58,7 @@ function Auth() {
         <div className="glass-card rounded-3xl p-8">
           <div className="text-center">
             <div className="text-4xl">🐾</div>
-            <h1 className="mt-2 font-display text-3xl font-bold">{mode === "signin" ? "Welcome back" : "Join MyMeow"}</h1>
+            <h1 className="mt-2 font-display text-3xl font-bold">{mode === "signin" ? "Welcome back" : "Join PawVerse"}</h1>
             <p className="mt-1 text-sm text-muted-foreground">Adopt, foster, or just say hi to Mittens.</p>
           </div>
 
@@ -82,7 +82,7 @@ function Auth() {
           </form>
 
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            {mode === "signin" ? "New to MyMeow?" : "Already have an account?"}{" "}
+            {mode === "signin" ? "New to PawVerse?" : "Already have an account?"}{" "}
             <button onClick={() => setMode(mode === "signin" ? "signup" : "signin")} className="text-primary hover:underline">
               {mode === "signin" ? "Create one" : "Sign in"}
             </button>
