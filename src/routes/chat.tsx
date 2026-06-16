@@ -84,7 +84,7 @@ function ChatPage() {
           {messages.length === 0 && (
             <div className="space-y-4">
               <div className="rounded-2xl bg-accent/40 p-4 text-sm">
-                Hi! I'm Mittens 🐾 — ask me anything about adopting or fostering a cat. I can also match cats to your lifestyle.
+                Hi! I'm Mittens 🐾 — ask me anything about adopting or fostering a cat or dog. I can also match pets to your lifestyle.
               </div>
               <div className="flex flex-wrap gap-2">
                 {suggestions.map((s) => (
