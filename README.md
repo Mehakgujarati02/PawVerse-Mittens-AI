@@ -18,11 +18,16 @@ Pet care and onboarding information
 Our mission is to make pet adoption and fostering more accessible, transparent, and efficient while helping shelters and rescue organizations find loving homes for animals faster.
 
 🛠️ Tech Stack
-React
-TypeScript
-Tailwind CSS
-Supabase
-AI Assistant Integration
+React,
+
+TypeScript,
+
+Tailwind CSS,
+
+Supabase,
+
+AI Assistant Integration,
+
 ❤️ Impact
 
 
