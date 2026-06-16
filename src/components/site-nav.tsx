@@ -20,10 +20,10 @@ export function SiteNav() {
         <div className="glass-card flex items-center justify-between rounded-full px-5 py-2.5">
           <Link to="/" className="flex items-center gap-2 font-display text-2xl font-bold text-primary">
             <span className="text-3xl">🐾</span>
-            MyMeow
+            PawVerse
           </Link>
           <nav className="hidden items-center gap-1 md:flex">
-            <Link to="/cats" className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 hover:bg-secondary/40 hover:text-foreground">Browse cats</Link>
+            <Link to="/cats" className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 hover:bg-secondary/40 hover:text-foreground">Browse pets</Link>
             <Link to="/foster" className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 hover:bg-secondary/40 hover:text-foreground">Foster</Link>
             <Link to="/chat" className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 hover:bg-secondary/40 hover:text-foreground">
               <span className="inline-flex items-center gap-1.5"><Sparkles className="h-3.5 w-3.5" />Ask Mittens</span>
