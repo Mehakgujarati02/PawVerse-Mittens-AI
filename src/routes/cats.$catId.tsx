@@ -20,19 +20,22 @@ function CatDetail() {
   });
 
   if (isLoading) return <div className="min-h-screen"><SiteNav /><div className="p-12 text-center text-muted-foreground">Loading…</div></div>;
-  if (!cat) return <div className="min-h-screen"><SiteNav /><div className="p-12 text-center">Cat not found.</div></div>;
+  if (!cat) return <div className="min-h-screen"><SiteNav /><div className="p-12 text-center">Pet not found.</div></div>;
+
+  const speciesLabel = cat.species === "dog" ? "🐶 Dog" : "🐱 Cat";
 
   return (
     <div className="min-h-screen">
       <SiteNav />
       <main className="mx-auto max-w-6xl px-4 py-10">
-        <Link to="/cats" className="text-sm text-primary hover:underline">← All cats</Link>
+        <Link to="/cats" className="text-sm text-primary hover:underline">← All pets</Link>
         <div className="mt-4 grid gap-10 md:grid-cols-2">
           <div className="glass-card overflow-hidden rounded-[2rem]">
             <img src={cat.image_url ?? ""} alt={cat.name} className="aspect-square w-full object-cover" />
           </div>
           <div>
-            <h1 className="text-5xl font-bold md:text-6xl">{cat.name}</h1>
+            <span className="inline-block rounded-full bg-accent/60 px-3 py-1 text-xs font-semibold">{speciesLabel}</span>
+            <h1 className="mt-2 text-5xl font-bold md:text-6xl">{cat.name}</h1>
             <p className="mt-2 text-muted-foreground">{cat.age_years} yrs · {cat.gender} · {cat.breed} · {cat.color}</p>
 
             <div className="mt-4 flex flex-wrap gap-2">
