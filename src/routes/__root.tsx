@@ -19,7 +19,7 @@ function NotFoundComponent() {
       <div className="glass-card max-w-md rounded-3xl p-10 text-center">
         <div className="text-6xl">😿</div>
         <h1 className="mt-4 text-5xl font-bold text-primary">404</h1>
-        <p className="mt-3 text-muted-foreground">This cat wandered off. Let's get you back home.</p>
+        <p className="mt-3 text-muted-foreground">This pet wandered off. Let's get you back home.</p>
         <Link to="/" className="mt-6 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90">
           Back home
         </Link>
