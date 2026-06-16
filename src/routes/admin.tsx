@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import { Sparkles, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
-  head: () => ({ meta: [{ title: "Shelter admin — MyMeow" }] }),
+  head: () => ({ meta: [{ title: "Shelter admin — PawVerse" }] }),
   component: Admin,
 });
 
