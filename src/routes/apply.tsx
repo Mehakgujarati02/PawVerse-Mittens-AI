@@ -123,8 +123,8 @@ function ApplyPage() {
             <label className="flex items-center gap-2 text-sm"><Checkbox checked={form.has_kids} onCheckedChange={(v) => setForm({ ...form, has_kids: !!v })} /> Kids at home</label>
           </div>
           <div>
-            <Label>Cat experience</Label>
-            <Textarea className="mt-1.5" maxLength={1000} value={form.experience} onChange={(e) => setForm({ ...form, experience: e.target.value })} placeholder="Have you had cats before?" />
+            <Label>Pet experience</Label>
+            <Textarea className="mt-1.5" maxLength={1000} value={form.experience} onChange={(e) => setForm({ ...form, experience: e.target.value })} placeholder="Have you had cats or dogs before?" />
           </div>
           <div>
             <Label>Why do you want to {type === "foster" ? "foster" : "adopt"}?</Label>
