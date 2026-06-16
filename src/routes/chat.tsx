@@ -17,8 +17,8 @@ export const Route = createFileRoute("/chat")({
   }),
   head: () => ({
     meta: [
-      { title: "Mittens — your AI adoption counselor | MyMeow" },
-      { name: "description", content: "Chat with Mittens, our AI cat-adoption counselor. Get matched, ask questions, prepare your home." },
+      { title: "Mittens — your AI adoption counselor | PawVerse" },
+      { name: "description", content: "Chat with Mittens, our AI pet-adoption counselor. Get matched with cats or dogs, ask questions, prepare your home." },
     ],
   }),
   component: ChatPage,
