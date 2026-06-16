@@ -17,8 +17,8 @@ export const Route = createFileRoute("/chat")({
   }),
   head: () => ({
     meta: [
-      { title: "Mittens — your AI adoption counselor | MyMeow" },
-      { name: "description", content: "Chat with Mittens, our AI cat-adoption counselor. Get matched, ask questions, prepare your home." },
+      { title: "Mittens — your AI adoption counselor | PawVerse" },
+      { name: "description", content: "Chat with Mittens, our AI pet-adoption counselor. Get matched with cats or dogs, ask questions, prepare your home." },
     ],
   }),
   component: ChatPage,
@@ -62,10 +62,10 @@ function ChatPage() {
   }
 
   const suggestions = [
-    "I live in an apartment with one toddler. What cats fit us?",
+    "I live in an apartment with one toddler. What pet fits us?",
+    "Should I get a cat or a dog as a first-time owner?",
     "What does fostering actually cost me?",
-    "How do I introduce a new cat to my resident dog?",
-    "Help me decide between adopting and fostering first.",
+    "How do I introduce a new pet to my resident dog or cat?",
   ];
 
   return (
@@ -84,7 +84,7 @@ function ChatPage() {
           {messages.length === 0 && (
             <div className="space-y-4">
               <div className="rounded-2xl bg-accent/40 p-4 text-sm">
-                Hi! I'm Mittens 🐾 — ask me anything about adopting or fostering a cat. I can also match cats to your lifestyle.
+                Hi! I'm Mittens 🐾 — ask me anything about adopting or fostering a cat or dog. I can also match pets to your lifestyle.
               </div>
               <div className="flex flex-wrap gap-2">
                 {suggestions.map((s) => (
@@ -117,10 +117,10 @@ function ChatPage() {
         </div>
 
         <form onSubmit={onSend} className="mt-4 flex gap-2">
-          <Input autoFocus value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask about a cat, fostering, costs, kids…" className="rounded-full bg-card" disabled={isLoading} />
+          <Input autoFocus value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask about a pet, fostering, costs, kids…" className="rounded-full bg-card" disabled={isLoading} />
           <Button type="submit" disabled={isLoading || !input.trim()} className="rounded-full bg-primary"><Send className="h-4 w-4" /></Button>
         </form>
-        <p className="mt-3 text-center text-xs text-muted-foreground">Want to apply? <Link to="/cats" className="text-primary hover:underline">Browse cats</Link></p>
+        <p className="mt-3 text-center text-xs text-muted-foreground">Want to apply? <Link to="/cats" className="text-primary hover:underline">Browse pets</Link></p>
       </main>
     </div>
   );

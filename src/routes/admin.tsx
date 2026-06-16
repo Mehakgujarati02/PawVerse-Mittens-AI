@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import { Sparkles, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
-  head: () => ({ meta: [{ title: "Shelter admin — MyMeow" }] }),
+  head: () => ({ meta: [{ title: "Shelter admin — PawVerse" }] }),
   component: Admin,
 });
 
@@ -148,7 +148,7 @@ function ApplicationsList({ apps, cats, onUpdate }: { apps: App[]; cats: { id: s
 }
 
 function IntakeForm({ onCreated }: { onCreated: () => void }) {
-  const [form, setForm] = useState({ name: "", age_years: 1, gender: "Female", breed: "", color: "", notes: "", image_url: "", location: "" });
+  const [form, setForm] = useState({ name: "", species: "cat" as "cat" | "dog", age_years: 1, gender: "Female", breed: "", color: "", notes: "", image_url: "", location: "" });
   const [ai, setAi] = useState<{ description: string; personality: string[]; energy_level: string; good_with_kids: boolean; good_with_pets: boolean } | null>(null);
   const [busy, setBusy] = useState(false);
   const run = useServerFn(generateIntakeDoc);
@@ -156,7 +156,7 @@ function IntakeForm({ onCreated }: { onCreated: () => void }) {
   async function aiGenerate() {
     setBusy(true);
     try {
-      const out = await run({ data: { name: form.name, age_years: Number(form.age_years), gender: form.gender, breed: form.breed, color: form.color, notes: form.notes } });
+      const out = await run({ data: { name: form.name, species: form.species, age_years: Number(form.age_years), gender: form.gender, breed: form.breed, color: form.color, notes: form.notes } });
       setAi(out);
     } catch (e) { toast.error("AI generation failed"); console.error(e); } finally { setBusy(false); }
   }
@@ -165,6 +165,7 @@ function IntakeForm({ onCreated }: { onCreated: () => void }) {
     if (!ai) return;
     const { error } = await supabase.from("cats").insert({
       name: form.name,
+      species: form.species,
       age_years: Number(form.age_years),
       gender: form.gender,
       breed: form.breed || null,
@@ -179,7 +180,7 @@ function IntakeForm({ onCreated }: { onCreated: () => void }) {
       good_with_pets: ai.good_with_pets,
     });
     if (error) { toast.error(error.message); return; }
-    setForm({ name: "", age_years: 1, gender: "Female", breed: "", color: "", notes: "", image_url: "", location: "" });
+    setForm({ name: "", species: "cat", age_years: 1, gender: "Female", breed: "", color: "", notes: "", image_url: "", location: "" });
     setAi(null);
     onCreated();
   }
@@ -190,6 +191,11 @@ function IntakeForm({ onCreated }: { onCreated: () => void }) {
         <Sparkles className="h-4 w-4" /> Intake — AI writes the listing for you
       </div>
       <div className="grid gap-4 md:grid-cols-2">
+        <div><Label>Species</Label>
+          <select className="mt-1.5 w-full rounded-md border bg-card px-3 py-2 text-sm" value={form.species} onChange={(e) => setForm({ ...form, species: e.target.value as "cat" | "dog" })}>
+            <option value="cat">🐱 Cat</option><option value="dog">🐶 Dog</option>
+          </select>
+        </div>
         <div><Label>Name</Label><Input className="mt-1.5" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
         <div><Label>Age (years)</Label><Input className="mt-1.5" type="number" step="0.5" value={form.age_years} onChange={(e) => setForm({ ...form, age_years: Number(e.target.value) })} /></div>
         <div><Label>Gender</Label>

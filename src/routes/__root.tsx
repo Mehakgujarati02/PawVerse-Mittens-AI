@@ -19,7 +19,7 @@ function NotFoundComponent() {
       <div className="glass-card max-w-md rounded-3xl p-10 text-center">
         <div className="text-6xl">😿</div>
         <h1 className="mt-4 text-5xl font-bold text-primary">404</h1>
-        <p className="mt-3 text-muted-foreground">This cat wandered off. Let's get you back home.</p>
+        <p className="mt-3 text-muted-foreground">This pet wandered off. Let's get you back home.</p>
         <Link to="/" className="mt-6 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90">
           Back home
         </Link>
@@ -58,11 +58,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "MyMeow — AI-powered cat adoption & foster" },
-      { name: "description", content: "MyMeow makes finding a foster or forever cat hassle-free, with an AI counselor that matches you to the right cat and guides your adoption end to end." },
-      { name: "author", content: "MyMeow" },
-      { property: "og:title", content: "MyMeow — AI-powered cat adoption & foster" },
-      { property: "og:description", content: "Find a foster or forever cat with AI-guided matching, applications, and intake." },
+      { title: "PawVerse — AI-powered cat & dog adoption and foster" },
+      { name: "description", content: "PawVerse makes finding a foster or forever cat or dog hassle-free, with an AI counselor that matches you to the right pet and guides your adoption end to end." },
+      { name: "author", content: "PawVerse" },
+      { property: "og:title", content: "PawVerse — AI-powered pet adoption & foster" },
+      { property: "og:description", content: "Find a foster or forever cat or dog with AI-guided matching, applications, and intake." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
