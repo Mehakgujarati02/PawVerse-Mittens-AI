@@ -142,6 +142,7 @@ function Index() {
       <footer className="border-t border-border/60 bg-card/40 py-8 text-center text-sm text-muted-foreground">
         Made with 🐾 by PawVerse · A hackathon project · AI-powered pet adoption
       </footer>
+      </div>
     </div>
   );
 }
