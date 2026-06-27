@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useServerFn } from "@tanstack/react-start";
@@ -51,6 +51,31 @@ function PetsPage() {
       setLoading(false);
     }
   }
+
+  const didAutoRun = useRef(false);
+  useEffect(() => {
+    if (didAutoRun.current) return;
+    try {
+      const raw = sessionStorage.getItem("pawverse:quickmatch");
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as { lifestyle?: string; species?: string };
+      sessionStorage.removeItem("pawverse:quickmatch");
+      if (!parsed.lifestyle) return;
+      didAutoRun.current = true;
+      if (parsed.species === "cat" || parsed.species === "dog") setSpecies(parsed.species);
+      setLifestyle(parsed.lifestyle);
+      setLoading(true);
+      run({
+        data: {
+          lifestyle: parsed.lifestyle,
+          species: parsed.species === "cat" || parsed.species === "dog" ? parsed.species : undefined,
+        },
+      })
+        .then((out) => setMatches(out.matches))
+        .catch((e) => { toast.error("AI matching is busy — try again."); console.error(e); })
+        .finally(() => setLoading(false));
+    } catch {}
+  }, [run]);
 
   const matchSet = new Set(matches?.map((m) => m.catId) ?? []);
 

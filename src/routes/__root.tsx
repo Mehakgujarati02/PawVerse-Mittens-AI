@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+import { PawCursorTrail } from "@/components/paw-cursor-trail";
+import { PetMascot } from "@/components/pet-mascot";
 
 function NotFoundComponent() {
   return (
@@ -96,6 +98,8 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <PawCursorTrail />
+      <PetMascot />
       <Toaster richColors position="top-center" />
     </QueryClientProvider>
   );

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
-import { FloatingPets } from "@/components/floating-pets";
+import { QuickMatchQuiz } from "@/components/quick-match-quiz";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -32,10 +32,9 @@ function Index() {
   });
 
   return (
-    <div className="relative min-h-screen">
-      <FloatingPets count={7} />
-      <div className="relative z-10">
+    <div className="min-h-screen">
       <SiteNav />
+
 
 
       <section className="mx-auto max-w-7xl px-4 pt-12 pb-20 md:pt-20">
@@ -93,6 +92,12 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-4 pb-16">
+        <QuickMatchQuiz />
+      </section>
+
+
+
       <section className="mx-auto max-w-7xl px-4 pb-20">
         <h2 className="mb-8 text-3xl font-bold md:text-4xl">How PawVerse works</h2>
         <div className="grid gap-5 md:grid-cols-4">
@@ -142,7 +147,6 @@ function Index() {
       <footer className="border-t border-border/60 bg-card/40 py-8 text-center text-sm text-muted-foreground">
         Made with 🐾 by PawVerse · A hackathon project · AI-powered pet adoption
       </footer>
-      </div>
     </div>
   );
 }
