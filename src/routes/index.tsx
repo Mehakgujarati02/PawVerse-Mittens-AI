@@ -92,6 +92,12 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-4 pb-16">
+        <QuickMatchQuiz />
+      </section>
+
+
+
       <section className="mx-auto max-w-7xl px-4 pb-20">
         <h2 className="mb-8 text-3xl font-bold md:text-4xl">How PawVerse works</h2>
         <div className="grid gap-5 md:grid-cols-4">
@@ -141,7 +147,6 @@ function Index() {
       <footer className="border-t border-border/60 bg-card/40 py-8 text-center text-sm text-muted-foreground">
         Made with 🐾 by PawVerse · A hackathon project · AI-powered pet adoption
       </footer>
-      </div>
     </div>
   );
 }
