@@ -31,6 +31,9 @@ AI Assistant Integration,
 
 ❤️ Impact
 
+**Try it here:**
+https://pawverseai.lovable.app/
+
 
 Architecture:-
 
@@ -214,6 +217,12 @@ PawVerse Platform
    ├── Foster Requests
    └── Admin Dashboard
 🎯 Main Problem Solved
+
+## ✨ User Experience Enhancements
+
+- 🐾 **Interactive Paw-Print Trail** – A playful paw-print animation follows the user's cursor, creating an engaging and pet-friendly browsing experience.
+- 🐱 **Mittens Virtual Mascot** – A friendly cat mascot positioned in the bottom-right corner that waves to users and provides helpful tips and guidance throughout the website.
+- 🤖 **AI-Powered Quick Match Quiz** – A 3-step homepage quiz that captures user preferences and automatically runs the AI matching algorithm on the Cats page, instantly recommending the most suitable cats for adoption.
 
 PawVerse-Mittens AI addresses the inefficiencies in traditional pet adoption and fostering by:
 
