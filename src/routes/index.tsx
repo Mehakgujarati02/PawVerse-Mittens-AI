@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
-import { FloatingPets } from "@/components/floating-pets";
+import { QuickMatchQuiz } from "@/components/quick-match-quiz";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -32,10 +32,9 @@ function Index() {
   });
 
   return (
-    <div className="relative min-h-screen">
-      <FloatingPets count={7} />
-      <div className="relative z-10">
+    <div className="min-h-screen">
       <SiteNav />
+
 
 
       <section className="mx-auto max-w-7xl px-4 pt-12 pb-20 md:pt-20">
