@@ -51,14 +51,20 @@ Return your top 3 matches with a 1-sentence warm reason for each, mentioning whe
             catId: z.string(),
             name: z.string(),
             reason: z.string(),
-            score: z.number().min(0).max(100),
-          })).max(3),
+            score: z.number(),
+          })),
         }),
       }),
       prompt,
     });
-    return output;
+    return {
+      matches: (output.matches ?? []).slice(0, 3).map((m) => ({
+        ...m,
+        score: Math.max(0, Math.min(100, m.score)),
+      })),
+    };
   });
+
 
 const IntakeInput = z.object({
   name: z.string().min(1).max(80),
@@ -95,7 +101,7 @@ Pet:
       experimental_output: Output.object({
         schema: z.object({
           description: z.string(),
-          personality: z.array(z.string()).max(6),
+          personality: z.array(z.string()),
           energy_level: z.enum(["low", "medium", "high"]),
           good_with_kids: z.boolean(),
           good_with_pets: z.boolean(),
