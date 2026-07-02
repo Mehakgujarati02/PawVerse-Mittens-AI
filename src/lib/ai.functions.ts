@@ -101,7 +101,7 @@ Pet:
       experimental_output: Output.object({
         schema: z.object({
           description: z.string(),
-          personality: z.array(z.string()).max(6),
+          personality: z.array(z.string()),
           energy_level: z.enum(["low", "medium", "high"]),
           good_with_kids: z.boolean(),
           good_with_pets: z.boolean(),
