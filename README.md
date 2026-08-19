@@ -2,7 +2,7 @@
 
 PawVerse-Mittens AI is a web platform designed to simplify and streamline pet adoption and fostering for cats and dogs. The platform bridges the gap between shelters, foster caregivers, and potential adopters, creating a transparent and efficient ecosystem for animal welfare.
 
-✨ Features
+✨ Features:-
 🐶 Browse adoptable dogs and cats with detailed profiles and photos.
 🏠 Connect with shelters, foster homes, and adopters in one place.
 📋 Access clear adoption and fostering guidelines and application procedures.
@@ -53,14 +53,14 @@ Search and filter pets
 View high-quality pet photos
 Access transparency-focused information
 Pet Details Include
-Name
-Age
-Breed
-Gender
-Personality traits
-Energy level
-Health information
-Location
+Name,
+Age,
+Breed,
+Gender,
+Personality traits,
+Energy level,
+Health information,
+Location,
 Adoption status
 
 2. AI-Powered Adoption Assistant (Mittens AI)
